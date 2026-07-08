@@ -14,6 +14,8 @@ import java.util.UUID;
 
 /**
  * REST Controller for Contract Management.
+ *
+ * @author Pratik Kumar | Xebia Virtual Internship | 70812345pratik@gmail.com
  */
 @RestController
 @RequestMapping("/api/v1/contracts")

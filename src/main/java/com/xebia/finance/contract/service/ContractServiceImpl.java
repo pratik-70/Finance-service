@@ -16,6 +16,8 @@ import java.util.UUID;
 
 /**
  * Implementation of ContractService.
+ *
+ * @author Pratik Kumar | Xebia Virtual Internship | 70812345pratik@gmail.com
  */
 @Service
 @RequiredArgsConstructor

@@ -9,6 +9,8 @@ import java.util.UUID;
 
 /**
  * Service interface for managing contracts.
+ *
+ * @author Pratik Kumar | Xebia Virtual Internship | 70812345pratik@gmail.com
  */
 public interface ContractService {
 

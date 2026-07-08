@@ -13,6 +13,8 @@ import java.util.UUID;
  *
  * This entity stores the contract details that will later be used
  * for billing, invoice generation, and payment processing.
+ *
+ * @author Pratik Kumar | Xebia Virtual Internship | 70812345pratik@gmail.com
  */
 @Entity
 @Table(name = "contracts")

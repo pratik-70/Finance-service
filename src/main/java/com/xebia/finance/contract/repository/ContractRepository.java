@@ -12,6 +12,8 @@ import java.util.UUID;
  *
  * Provides CRUD operations and custom query methods
  * for managing finance contracts.
+ *
+ * @author Pratik Kumar | Xebia Virtual Internship | 70812345pratik@gmail.com
  */
 @Repository
 public interface ContractRepository extends JpaRepository<Contract, UUID> {

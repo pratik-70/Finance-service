@@ -9,6 +9,8 @@ import java.util.UUID;
 
 /**
  * Response DTO returned to API consumers.
+ *
+ * @author Pratik Kumar | Xebia Virtual Internship | 70812345pratik@gmail.com
  */
 public record ContractResponse(
 

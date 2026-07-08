@@ -10,6 +10,8 @@ import java.util.UUID;
 
 /**
  * Request DTO for creating a contract.
+ *
+ * @author Pratik Kumar | Xebia Virtual Internship | 70812345pratik@gmail.com
  */
 public record CreateContractRequest(
 

@@ -10,6 +10,8 @@ import java.util.UUID;
 
 /**
  * Mapper class for converting Contract Entity and DTOs.
+ *
+ * @author Pratik Kumar | Xebia Virtual Internship | 70812345pratik@gmail.com
  */
 @Component
 public class ContractMapper {

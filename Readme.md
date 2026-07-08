@@ -69,7 +69,47 @@ The Finance Service follows a layered Spring Boot architecture based on the **Se
                       │
               Incoming HTTP Requests
 ```
+## 💼 Finance Domain Architecture
 
+```text
+                           Contract
+                               │
+                               ▼
+                        Billing Rules
+                               │
+                               ▼
+                 Billing Calculation Engine
+                               │
+      ┌──────────┬─────────┬──────────┬──────────┬──────────┐
+      ▼          ▼         ▼          ▼          ▼
+    GST      Discount    EMI      Currency    Late Fee
+      └──────────┴─────────┴──────────┴──────────┘
+                               │
+                               ▼
+                        Invoice Generator
+                               │
+                               ▼
+                            Invoice
+                               │
+                               ▼
+                     Installment Manager
+                               │
+                               ▼
+                       Payment Service
+                     ┌─────────┴──────────┐
+                     ▼                    ▼
+          Payment Gateway Adapter    Retry Handler
+                     │                    │
+                     └─────────┬──────────┘
+                               ▼
+                     Payment Transaction
+                               │
+                               ▼
+                  Reminder & Notification
+                               │
+                               ▼
+                    Reports & Analytics
+```
 ---
 
 # 📂 Project Structure

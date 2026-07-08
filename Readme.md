@@ -1,301 +1,291 @@
-# Finance Service - Learning Management System (LMS)
+# 💰 Finance Service
 
-Backend microservice for the **Finance, Billing & Revenue (M11)** module of the Learning Management System (LMS).
+Enterprise-grade **Finance Service** developed as part of the **Xebia Virtual Internship Program** for the Learning Management System (LMS).
 
-This project is being developed as part of the **Xebia Virtual Internship Program**.
-
----
-
-# 📖 Overview
-
-The Finance Service is responsible for managing all financial operations within the Learning Management System. It provides APIs to manage contracts, billing rules, invoices, payments, reconciliation, and financial reports for organizations using the LMS platform.
-
-The service is designed using a layered architecture following enterprise Spring Boot development practices.
+The Finance Service is responsible for managing the complete financial lifecycle of an organization, including contract management, billing policies, invoice generation, installment payments, payment processing and financial reporting.
 
 ---
 
-# 🎯 Objectives
+# 📌 Project Overview
 
-The Finance Service aims to:
+The Finance Service acts as the financial backbone of the Learning Management System.
 
-- Manage organization contracts
-- Configure billing rules
-- Generate invoices
-- Process payments
-- Track payment history
-- Handle reconciliation
-- Generate financial reports
-- Support EMI and full payment options
-- Send payment reminders
-- Integrate with JasperReports for invoice generation
+It manages financial agreements between organizations and the LMS while providing secure, scalable and enterprise-ready billing operations.
 
----
+Current implementation includes:
 
-# 🚀 Current Development Status
-
-This project is under active development.
-
-## ✅ Completed
-
-- Spring Boot Project Setup
-- PostgreSQL Integration
-- Flyway Database Migration
-- Layered Architecture
+- Contract Management
+- Billing Rules Management
+- Business Validation
 - Global Exception Handling
-- Contract Management Module
-- CRUD REST APIs
-- Swagger Integration
-- Postman API Testing
-- Environment Configuration
+- Database Migration using Flyway
+- PostgreSQL Integration
+- REST APIs
+- Swagger API Documentation
 
-## 🚧 In Progress
-
-- Billing Rules Module
-
-## 📌 Planned
-
-- Billable Items
-- Invoice Management
-- Invoice Line Items
-- Payment Management
-- Payment History
-- Reconciliation
-- Credit Notes
-- JasperReports Integration
-- Email Notifications
-- Revenue Analytics
-- JWT Authentication
+Upcoming modules include Invoice Management, Payment Processing, Installment Management and Financial Reporting.
 
 ---
 
-# 🏗️ Architecture
+# 🏗 Project Architecture
 
-The project follows a layered architecture.
+The Finance Service follows a layered Spring Boot architecture based on the **Separation of Concerns (SoC)** principle.
 
+```text
+                         Client
+                 (Postman / Swagger UI)
+                            │
+                            ▼
+                    REST Controllers
+                            │
+                            ▼
+                     Service Layer
+                  (Business Logic)
+                            │
+                            ▼
+              Validation & Mapper Layer
+                            │
+                            ▼
+                   Repository Layer
+                 (Spring Data JPA)
+                            │
+                            ▼
+                  PostgreSQL Database
+                            ▲
+                            │
+                    Flyway Migrations
+
+──────────────────────────────────────────────────────────────
+
+             Global Exception Handler
+                      ▲
+                      │
+              Entire Application
+
+──────────────────────────────────────────────────────────────
+
+              Spring Security Layer
+                      ▲
+                      │
+              Incoming HTTP Requests
 ```
-                  Client
-                     │
-                     ▼
-              REST Controller
-                     │
-                     ▼
-                 Service Layer
-                     │
-                     ▼
-                 Mapper Layer
-                     │
-                     ▼
-              Repository Layer
-                     │
-                     ▼
-                 PostgreSQL
-```
-
----
-
-# 🛠️ Technology Stack
-
-| Technology | Version |
-|------------|---------|
-| Java | 21 |
-| Spring Boot | 3.3.2 |
-| Spring Data JPA | Latest |
-| PostgreSQL | 18 |
-| Flyway | Latest |
-| Spring Validation | Latest |
-| Spring Security | Latest |
-| Swagger / OpenAPI | Latest |
-| Lombok | Latest |
-| Maven | Latest |
-| Git | Version Control |
-| Postman | API Testing |
 
 ---
 
 # 📂 Project Structure
 
-```
+```text
 finance-service
 │
 ├── src
 │   ├── main
 │   │
 │   ├── java
-│   │   └── com.xebia.finance
 │   │
-│   │       ├── common
-│   │       ├── config
-│   │       ├── contract
-│   │       │   ├── controller
-│   │       │   ├── dto
-│   │       │   ├── entity
-│   │       │   ├── mapper
-│   │       │   ├── repository
-│   │       │   ├── service
-│   │       │   └── validation
-│   │       │
-│   │       ├── exception
-│   │       ├── security
-│   │       └── util
+│   ├── com.xebia.finance
 │   │
-│   └── resources
-│       ├── application.yml
-│       └── db
-│           └── migration
-│               └── V1__create_contract_table.sql
+│   ├── billing
+│   │   ├── controller
+│   │   ├── dto
+│   │   ├── entity
+│   │   ├── mapper
+│   │   ├── repository
+│   │   ├── service
+│   │   └── validation
+│   │
+│   ├── contract
+│   │   ├── controller
+│   │   ├── dto
+│   │   ├── entity
+│   │   ├── mapper
+│   │   ├── repository
+│   │   ├── service
+│   │   └── validation
+│   │
+│   ├── common
+│   │   └── entity
+│   │
+│   ├── config
+│   ├── exception
+│   ├── security
+│   ├── util
+│   │
+│   └── FinanceApplication.java
 │
-├── .env.example
-├── .gitignore
+├── resources
+│   ├── db
+│   │   └── migration
+│   │       ├── V1_create_contract_table.sql
+│   │       └── V2_create_billing_rules_table.sql
+│   │
+│   └── application.yml
+│
+├── .env
 ├── pom.xml
 └── README.md
 ```
 
 ---
 
-# ✅ Implemented Features
+# 🏛 Layer Responsibilities
+
+| Layer | Responsibility |
+|--------|----------------|
+| Controller | Exposes REST APIs and handles HTTP requests and responses |
+| DTO | Transfers request and response data between client and application |
+| Service | Contains business logic and application workflow |
+| Validation | Enforces business rules before processing |
+| Mapper | Converts DTOs to Entities and vice versa |
+| Repository | Handles database operations using Spring Data JPA |
+| Entity | Represents database tables |
+| Exception | Provides centralized exception handling |
+| Security | Configures authentication and authorization |
+| Config | Application configuration classes |
+| Common | Shared reusable components |
+| Util | Utility/helper classes |
+| Resources | Configuration files and Flyway migrations |
+
+---
+
+# 🚀 Technology Stack
+
+| Technology | Version |
+|------------|---------|
+| Java | 21 |
+| Spring Boot | 3.3.2 |
+| Spring Data JPA | ✔ |
+| Spring Validation | ✔ |
+| Spring Security | ✔ |
+| PostgreSQL | 18 |
+| Flyway | ✔ |
+| Maven | ✔ |
+| Lombok | ✔ |
+| Swagger OpenAPI | ✔ |
+
+---
+
+# ✅ Implemented Modules
 
 ## Contract Management
 
-The Contract module provides complete CRUD operations.
+The Contract module manages financial agreements between organizations and the Learning Management System.
 
 ### Features
 
 - Create Contract
-- Retrieve All Contracts
-- Retrieve Contract By ID
+- Retrieve Contract
 - Update Contract
 - Delete Contract
+- Contract Validation
+- Duplicate Contract Prevention
 
 ---
 
-# 🌐 REST API Endpoints
+## Billing Rules Management
 
-## Create Contract
+The Billing Rules module manages pricing policies associated with contracts.
 
-| Method | Endpoint |
-|--------|----------|
-| POST | `/api/v1/contracts` |
+### Features
 
----
-
-## Get All Contracts
-
-| Method | Endpoint |
-|--------|----------|
-| GET | `/api/v1/contracts` |
-
----
-
-## Get Contract By ID
-
-| Method | Endpoint |
-|--------|----------|
-| GET | `/api/v1/contracts/{id}` |
+- Billing Type
+- GST Configuration
+- Discount Configuration
+- Currency Support
+- EMI Configuration
+- Late Fee Configuration
+- Effective Date Validation
+- Duplicate Billing Rule Prevention
 
 ---
 
-## Update Contract
+# 🔜 Upcoming Modules
 
-| Method | Endpoint |
-|--------|----------|
-| PUT | `/api/v1/contracts/{id}` |
+The following modules will be implemented during the internship.
 
----
-
-## Delete Contract
-
-| Method | Endpoint |
-|--------|----------|
-| DELETE | `/api/v1/contracts/{id}` |
-
----
-
-# 🗄️ Database
-
-Database: PostgreSQL
-
-Database Name
-
-```
-finance_db
-```
-
-Database schema is maintained using **Flyway**.
-
-Migration scripts are available in
-
-```
-src/main/resources/db/migration
-```
-
-Current Migration
-
-```
-V1__create_contract_table.sql
-```
+- Billing Calculation Engine
+- Invoice Management
+- Invoice Generation
+- Invoice History
+- Installment Management
+- Payment Processing
+- Payment Gateway Integration
+- Payment Retry Mechanism
+- Payment Reminder Scheduler
+- Revenue Dashboard
+- Reports & Analytics
 
 ---
 
-# ⚙️ Environment Variables
+# 📡 REST APIs
 
-Create a `.env` file in the project root.
+## Contract APIs
 
-Example
-
-```properties
-DB_URL=jdbc:postgresql://localhost:5432/finance_db
-DB_USERNAME=postgres
-DB_PASSWORD=your_password
-SERVER_PORT=8080
-```
-
----
-
-# ▶️ Running the Application
-
-## Clone Repository
-
-```bash
-git clone https://github.com/<your-username>/finance-service.git
-```
-
-```bash
-cd finance-service
-```
+| Method | Endpoint | Description |
+|---------|----------|-------------|
+| POST | `/api/v1/contracts` | Create Contract |
+| GET | `/api/v1/contracts` | Retrieve All Contracts |
+| GET | `/api/v1/contracts/{id}` | Retrieve Contract by ID |
+| PUT | `/api/v1/contracts/{id}` | Update Contract |
+| DELETE | `/api/v1/contracts/{id}` | Delete Contract |
 
 ---
 
-## Create Database
+## Billing Rule APIs
 
-```sql
-CREATE DATABASE finance_db;
-```
+| Method | Endpoint | Description |
+|---------|----------|-------------|
+| POST | `/api/v1/billing-rules` | Create Billing Rule |
+| GET | `/api/v1/billing-rules` | Retrieve All Billing Rules |
+| GET | `/api/v1/billing-rules/{id}` | Retrieve Billing Rule by ID |
+| PUT | `/api/v1/billing-rules/{id}` | Update Billing Rule |
+| DELETE | `/api/v1/billing-rules/{id}` | Delete Billing Rule |
 
 ---
 
-## Build
+# ✔ Business Validations
 
-```bash
-mvn clean install
+## Contract
+
+- Contract Number must be unique.
+- Contract Value must be positive.
+- Start Date must be before End Date.
+- GST percentage must be valid.
+
+## Billing Rules
+
+- GST percentage must be between 0–100%.
+- Effective From date must be before Effective To date.
+- Maximum Installments allowed only when EMI is enabled.
+- Discount validation.
+- Duplicate Billing Rule prevention.
+
+---
+
+# 🗄 Database
+
+**Database**
+
+```
+PostgreSQL
+```
+
+**Migration Tool**
+
+```
+Flyway
+```
+
+**Current Migrations**
+
+```
+V1_create_contract_table.sql
+
+V2_create_billing_rules_table.sql
 ```
 
 ---
 
-## Run
-
-```bash
-mvn spring-boot:run
-```
-
-Application will start on
-
-```
-http://localhost:8080
-```
-
----
-
-# 📚 API Documentation
+# 📖 API Documentation
 
 Swagger UI
 
@@ -303,88 +293,83 @@ Swagger UI
 http://localhost:8080/swagger-ui/index.html
 ```
 
-OpenAPI Documentation
+---
+
+# ▶ Getting Started
+
+## Clone Repository
+
+```bash
+git clone https://github.com/your-username/finance-service.git
+```
+
+---
+
+## Configure Environment Variables
+
+Create a `.env` file in the project root.
+
+```env
+DB_HOST=localhost
+DB_PORT=5432
+DB_NAME=finance_db
+DB_USERNAME=postgres
+DB_PASSWORD=your_password
+```
+
+---
+
+## Build the Project
+
+```bash
+mvn clean install
+```
+
+---
+
+## Run the Application
+
+```bash
+mvn spring-boot:run
+```
+
+Application starts on
 
 ```
-http://localhost:8080/v3/api-docs
+http://localhost:8080
 ```
 
 ---
 
 # 🧪 API Testing
 
-Current APIs have been successfully tested using
+The REST APIs can be tested using:
 
 - Postman
 - Swagger UI
 
-Verified Operations
-
-- ✅ Create Contract
-- ✅ Retrieve All Contracts
-- ✅ Retrieve Contract By ID
-- ✅ Update Contract
-- ✅ Delete Contract
-
 ---
 
-# 🛣️ Development Roadmap
+# 📈 Current Development Status
 
-## Phase 1 (Completed)
-
-- [x] Spring Boot Setup
-- [x] PostgreSQL Integration
-- [x] Flyway Migration
-- [x] Global Exception Handling
-- [x] Contract Management Module
-
----
-
-## Phase 2 (In Progress)
-
-- [ ] Billing Rules
-- [ ] Billable Items
-
----
-
-## Phase 3
-
-- [ ] Invoice Generation
-- [ ] Invoice Line Items
-- [ ] Payment Management
-
----
-
-## Phase 4
-
-- [ ] Reconciliation
-- [ ] Credit Notes
-- [ ] JasperReports
-
----
-
-## Phase 5
-
-- [ ] JWT Authentication
-- [ ] Email Notifications
-- [ ] Docker Support
-- [ ] Kubernetes Deployment
-- [ ] CI/CD Pipeline
-- [ ] Unit & Integration Testing
-
----
-
-# 💡 Future Improvements
-
-- Automatic Contract Number Generation
-- Soft Delete Support
-- Audit Logging
-- Role-Based Access Control (RBAC)
-- Payment Gateway Integration
-- Scheduled Payment Reminder Jobs
-- PDF Invoice Generation
-- Report Dashboard
-- Performance Optimization
+| Module | Status |
+|---------|--------|
+| Project Setup | ✅ Completed |
+| PostgreSQL Integration | ✅ Completed |
+| Flyway Migration | ✅ Completed |
+| Global Exception Handling | ✅ Completed |
+| Spring Security | ✅ Completed |
+| Contract Module | ✅ Completed |
+| Billing Rules Module | ✅ Completed |
+| CRUD APIs | ✅ Completed |
+| Validation | ✅ Completed |
+| Swagger Integration | ✅ Completed |
+| Postman Testing | ✅ Completed |
+| Billing Calculation Engine | 🚧 In Progress |
+| Invoice Module | ⏳ Planned |
+| Payment Module | ⏳ Planned |
+| Installment Module | ⏳ Planned |
+| Reports & Analytics | ⏳ Planned |
 
 ---
 
@@ -392,12 +377,14 @@ Verified Operations
 
 **Pratik Kumar**
 
-Backend Developer Intern
+Xebia Virtual Internship Program
 
-Xebia Virtual Internship
+Finance Service (Learning Management System)
+
+70812345pratik@gmail.com
 
 ---
 
 # 📄 License
 
-This project has been developed for educational and internship purposes as part of the **Xebia Virtual Internship Program**.
+This project was developed as part of the **Xebia Virtual Internship Program** for learning, demonstration and educational purposes.

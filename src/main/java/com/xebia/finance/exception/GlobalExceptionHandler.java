@@ -9,6 +9,16 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import java.time.LocalDateTime;
 
+/**
+ * Exception thrown when a requested resource cannot be found.
+ *
+ * Used whenever an entity such as a Contract or Billing Rule
+ * does not exist for the supplied identifier.
+ * Typically results in an HTTP 404 (Not Found) response.
+ *
+ * @author Pratik Kumar | Xebia Virtual Internship | 70812345pratik@gmail.com
+ */
+
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 

@@ -1,3 +1,14 @@
+# -----------------------------------------------------------------------------
+# Finance Service Configuration
+#
+# Centralized application configuration for the Finance Service.
+# Contains database connectivity, Flyway migration settings,
+# JPA configuration, server properties and environment variable
+# mappings used throughout the application.
+#
+# Author: Pratik Kumar | Xebia Virtual Internship | 70812345pratik@gmail.com
+# -----------------------------------------------------------------------------
+
 spring:
   application:
     name: finance-service

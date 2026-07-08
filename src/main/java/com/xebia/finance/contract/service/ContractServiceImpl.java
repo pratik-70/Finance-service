@@ -15,7 +15,13 @@ import java.util.List;
 import java.util.UUID;
 
 /**
- * Implementation of ContractService.
+ * Service implementation responsible for Contract Management.
+ *
+ * Handles creation, retrieval, update and deletion of contracts while
+ * enforcing business validations and maintaining data integrity.
+ * Contracts serve as the primary financial agreement between an
+ * organization and the Learning Management System, forming the
+ * foundation for billing, invoicing and payment processing.
  *
  * @author Pratik Kumar | Xebia Virtual Internship | 70812345pratik@gmail.com
  */

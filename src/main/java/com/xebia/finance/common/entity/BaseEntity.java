@@ -9,6 +9,17 @@ import lombok.Setter;
 
 import java.time.LocalDateTime;
 
+/**
+ * Base entity containing common audit fields shared across all
+ * persistent entities in the Finance Service.
+ *
+ * Automatically maintains creation and last modification timestamps
+ * using JPA lifecycle callbacks, ensuring consistent auditing and
+ * reducing duplicate code across domain entities.
+ *
+ * @author Pratik Kumar | Xebia Virtual Internship | 70812345pratik@gmail.com
+ */
+
 @Getter
 @Setter
 @MappedSuperclass
